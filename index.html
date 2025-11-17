@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dots Classifier — TF.js</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Dots Classifier (Client-side)</h1>
+
+    <div class="controls">
+      <div class="col">
+        <label>Overlap Mode
+          <select id="overlapMode">
+            <option value="allow">Allow Overlap</option>
+            <option value="no">Do Not Allow Overlap</option>
+          </select>
+        </label>
+
+        <label>Dot Count Range
+          <div class="inline">
+            <input id="countMin" type="number" value="1" min="0"> –
+            <input id="countMax" type="number" value="5" min="0">
+          </div>
+        </label>
+
+        <label>Batch Size <input id="batchSize" type="number" value="16" min="1"></label>
+        <label>Epochs <input id="epochs" type="number" value="5" min="1"></label>
+        <label>Update every (batches) <input id="updateEvery" type="number" value="1" min="1"></label>
+        <label>Image Size (px) <input id="imageSize" type="number" value="64" min="8"></label>
+        <label>Dot Radius (px) <input id="dotRadius" type="number" value="6" min="1"></label>
+        <label>Seed <input id="seed" type="number" value="42"></label>
+        <label>Steps / Epoch <input id="stepsPerEpoch" type="number" value="50" min="1"></label>
+        <label>Validation Steps / Epoch <input id="valSteps" type="number" value="10" min="0"></label>
+      </div>
+
+      <div class="col buttons">
+        <button id="startBtn">Start Training</button>
+        <button id="pauseBtn">Pause</button>
+        <button id="resetBtn">Reset</button>
+        <div class="status">
+          <div>Progress: <span id="progressLabel">Idle</span></div>
+          <div>Latest Batch: <span id="batchInfo">-</span></div>
+          <div>Loss: <span id="lossInfo">-</span></div>
+          <div>Accuracy: <span id="accInfo">-</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-row">
+      <div class="preview">
+        <h3>Batch Preview</h3>
+        <canvas id="previewCanvas" width="128" height="128"></canvas>
+        <div>Predicted: <span id="predLabel">-</span></div>
+      </div>
+
+      <div class="chart">
+        <h3>Accuracy (Training vs Validation)</h3>
+        <canvas id="accChart" width="600" height="300"></canvas>
+      </div>
+    </div>
+
+    <div class="architecture">
+      <h3>Model Architecture</h3>
+      <pre id="modelArch">(not built)</pre>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
